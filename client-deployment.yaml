@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-rest-client
+  template:
+    metadata:
+      labels:
+        app: app-rest-client
+    spec:
+      containers:
+      - name: rest-client
+        image: zalerix/rest-test
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4567
